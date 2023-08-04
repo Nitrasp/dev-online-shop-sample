@@ -9,9 +9,7 @@
     <title>サンプルオンラインショップ</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-        <h1>サンプルオンラインショップ初期画面</h1>
-    </nav>
+    {% block content %}
 
     <div class="col-4">
         <table class="table table-striped table-hover">
@@ -51,6 +49,11 @@
             </tboby>
         </table>
     </div>
+    <form action="/onlineShop/init" method="get">
 
+        <button type="submit">終了</button>
+    </form>
+
+    {% endblock %}
 </body>
 </html>

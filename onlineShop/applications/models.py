@@ -9,3 +9,8 @@ class Product(models.Model):
     name = models.TextField()
     # 単価
     price = models.IntegerField()
+    
+# 登録済み商品
+class Cart(models.Model):
+    
+    id = models.CharField(max_length=16, primary_key=True, auto_created=True)

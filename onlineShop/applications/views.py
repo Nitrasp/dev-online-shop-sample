@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 from .models import Product
 
 # 商品マスタの全商品
@@ -6,7 +7,6 @@ _PRODUCT_LIST = Product.objects.all()
 
 # 初期画面
 def init(request):
-    
     form = {
         'productList':_PRODUCT_LIST,
     }
@@ -19,7 +19,7 @@ def add(request):
     registeredList = '登録済みの商品一覧が表示されるようこれから改良して行きます。'
     form = {
         'productList':_PRODUCT_LIST,
-        'registeredList':registeredList,    
+        'registeredList':registeredList,
     }
     return render(request, 'detail.html', form)
 

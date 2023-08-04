@@ -2,16 +2,19 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>サンプルオンラインショップ</title>
 </head>
+
 <body>
     {% block content %}
-    <form action="/onlineShop/detail" method="post">
-    {% csrf_token %}
+    <form action="/onlineShop/register" method="post">
+        {% csrf_token %}
         <p>商品：
             <select name="product">
                 {% for products in productList %}
@@ -21,10 +24,17 @@
         </p>
         <p>点数：<input type="number" name="quantity" value="0"></p>
 
-        <button type="submit">明細追加</button>
-    </form>
+        <button type="submit" name="add">明細追加</button>
     
+    </form>
+
     <p>{{registeredList}}</p>
+
+    <p>
+        <button type="submit" name="del" onclick="location.href='/onlineShop/init'">削除</button>
+        <button type="submit" name="confirm" onclick="location.href='/onlineShop/register'">確定</button>
+    </p>
 </body>
 {% endblock %}
+
 </html>
