@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.db import connection
+from django.db.models import Sum
 from django.views.generic import TemplateView
-from .models import Product
+from .models import Product,Cart
 
 # 商品マスタの全商品
 _PRODUCT_LIST = Product.objects.all()
@@ -16,10 +18,16 @@ def init(request):
 # 明細追加画面
 def add(request):
     
-    registeredList = '登録済みの商品一覧が表示されるようこれから改良して行きます。'
+    productId = request.POST['product']
+    quantity = request.POST['quantity']
+    
+    Cart.objects.update_or_create(product_id=productId, defaults={'quantity':quantity})
+    
+    results = Cart.objects.all()
+        
     form = {
         'productList':_PRODUCT_LIST,
-        'registeredList':registeredList,
+        'registeredList':list(results),
     }
     return render(request, 'detail.html', form)
 

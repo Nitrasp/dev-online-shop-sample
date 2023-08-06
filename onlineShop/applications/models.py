@@ -12,5 +12,7 @@ class Product(models.Model):
     
 # 登録済み商品
 class Cart(models.Model):
-    
-    id = models.CharField(max_length=16, primary_key=True, auto_created=True)
+    # 数量
+    quantity = models.PositiveIntegerField(blank=False)
+    # 商品
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
