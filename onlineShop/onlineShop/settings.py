@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.humanize',
     'applications',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,3 +126,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+USE_THOUSAND_SEPARATOR = True  # 必要に応じて設定を修正
+NUMBER_GROUPING = 3
