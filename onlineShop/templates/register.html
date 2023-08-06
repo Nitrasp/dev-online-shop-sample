@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,46 +11,35 @@
 </head>
 <body>
     {% block content %}
-
-    <div class="col-4">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>ID</th>
-                    <th>商品名</th>
-                    <th>単価</th>
-                </tr>
-            </thead>
-            <tboby>
-                <tr>
-                    <td>1</td>
-                    <td>A001</td>
-                    <td>ボールペン</td>
-                    <td>120</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>A002</td>
-                    <td>シャーペン</td>
-                    <td>160</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>B001</td>
-                    <td>ノート</td>
-                    <td>130</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>C001</td>
-                    <td>消しゴム</td>
-                    <td>60</td>
-                </tr>
-            </tboby>
-        </table>
-    </div>
     <form action="/onlineShop/init" method="get">
+
+        <div class="col-6">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>商品名</th>
+                        <th>単価</th>
+                        <th>個数</th>
+                        <th>小計</th>
+                    </tr>
+                </thead>
+                <tboby>
+                    {% for r in registeredList %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{r.product.id}}</td>
+                        <td>{{r.product.name}}</td>
+                        <td>{{r.product.price|intcomma}}</td>
+                        <td>{{r.quantity|intcomma}}</td>
+                        <td>{{r.subtotal|intcomma}}</td>
+                    </tr>
+                    {% endfor %}
+                </tboby>
+            </table>
+        </div>
+        <p>合計:{{total|intcomma}}円</p>
 
         <button type="submit">終了</button>
     </form>

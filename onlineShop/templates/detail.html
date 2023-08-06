@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -43,11 +44,12 @@
             <tboby>
                 {% for r in registeredList %}
                 <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td>{{r.product.id}}</td>
-                    <td>{{r.product.name}}</td>
-                    <td>{{r.product.price}}</td>
-                    <td>{{r.quantity}}</td>
+                    <td><p>{{ forloop.counter }}</p></td>
+                    <td><p>{{ r.product.id }}</p></td>
+                    <td><p>{{ r.product.name }}</p></td>
+                    <td><p>{{ r.product.price|intcomma }}</p></td>
+                    <td><p>{{ r.quantity|intcomma }}</p></td>
+                    <td><p>{{ r.subtotal|intcomma }}</p></td>
                 </tr>
                 {% endfor %}
             </tboby>
